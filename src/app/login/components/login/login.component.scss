@@ -1,0 +1,44 @@
+#container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://static.pexels.com/photos/3768/sky-sunny-clouds-cloudy.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  mat-card{
+
+    padding: 2em;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    mat-card-content{
+      width: 100%;
+
+          form{
+            margin: 1em 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            justify-content: center;
+
+            mat-form-field{
+              width: 100%;
+              margin-bottom: 1.5em;
+            }
+            button{
+              width: 100%;
+            }
+          }
+    }
+  }
+
+}

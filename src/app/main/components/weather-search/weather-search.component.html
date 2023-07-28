@@ -1,0 +1,14 @@
+<div id="container">
+  <img id="logo" src="/assets/images/favicon.png" alt="logo">
+  <h3>Welcome to weather app!</h3>
+  <h4>Search a city</h4>
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="type something ..." [formControl]="cityControl" [matAutocomplete]="auto">
+    <mat-spinner *ngIf="loading | async" matSuffix [diameter]="20"></mat-spinner>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+      <mat-option *ngFor="let city of cityList | async" [value]="city" (onSelectionChange)="onSelectedCity($event)">
+        {{city.Country.LocalizedName + ', ' +city.LocalizedName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

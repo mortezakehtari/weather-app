@@ -1,0 +1,23 @@
+.loader{
+  position: relative;
+  background-color: rgb(235, 235, 235);
+  width: 200px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 10px;
+-webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.loader::after{
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg,#ebebeb,#ffffff66,#ebebeb);
+  animation: skeleton-loading 1.2s infinite;
+}
+@keyframes skeleton-loading {
+  100%{transform: translateX(100%)}
+}

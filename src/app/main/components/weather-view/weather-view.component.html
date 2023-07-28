@@ -1,0 +1,88 @@
+<div *ngIf="loading | async else forecastView">
+  <app-skeleton-loading skeltWidth="250px" skeltHeight="30px" margin="0 auto"></app-skeleton-loading>
+  <div id="today">
+    <table>
+      <tbody>
+        <tr *ngFor="let item of [].constructor(6)">
+          <td><app-skeleton-loading skeltWidth="100px" skeltHeight="16px"></app-skeleton-loading></td>
+          <td><app-skeleton-loading skeltWidth="100px" skeltHeight="16px" margin="0 0 0 auto"></app-skeleton-loading></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ul id="daily">
+    <li *ngFor="let item of [].constructor(5)">
+      <div>
+        <span><app-skeleton-loading skeltWidth="65px" skeltHeight="16px"></app-skeleton-loading></span>
+        <span>
+          <app-skeleton-loading skeltWidth="40px" skeltHeight="14px"></app-skeleton-loading>
+        </span>
+        <span>
+          <app-skeleton-loading skeltWidth="40px" skeltHeight="14px"></app-skeleton-loading>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
+<ng-template #forecastView>
+  <div *ngIf="(forecast | async) as forecast$">
+    <h3 *ngIf="(city | async) as city$">{{city$.Country.LocalizedName + ', ' + city$.LocalizedName}} Weather</h3>
+    <div id="today">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <span><mat-icon color="primary">calendar_month</mat-icon> Date</span>
+            </td>
+            <td>{{forecast$.Headline.EffectiveDate | date:"MMMM dd, yyyy"}}</td>
+          </tr>
+          <tr>
+            <td>
+              <span><mat-icon color="primary">device_thermostat</mat-icon> Minimum</span>
+            </td>
+            <td>{{forecast$.DailyForecasts[0].Temperature.Minimum.Value +
+              forecast$.DailyForecasts[0].Temperature.Minimum.Unit}}</td>
+          </tr>
+          <tr>
+            <td>
+              <span><mat-icon color="primary">device_thermostat</mat-icon> Maximum</span>
+            </td>
+            <td>{{forecast$.DailyForecasts[0].Temperature.Maximum.Value +
+              forecast$.DailyForecasts[0].Temperature.Maximum.Unit}}</td>
+          </tr>
+          <tr>
+            <td>
+              <span><mat-icon color="primary">sunny</mat-icon> Day</span>
+            </td>
+            <td>{{forecast$.DailyForecasts[0].Day.IconPhrase}}</td>
+          </tr>
+          <tr>
+            <td>
+              <span><mat-icon color="primary">dark_mode</mat-icon> Night</span>
+            </td>
+            <td>{{forecast$.DailyForecasts[0].Night.IconPhrase}}</td>
+          </tr>
+          <tr>
+            <td><span><mat-icon color="primary">description</mat-icon> Description</span></td>
+            <td>{{forecast$.Headline.Text}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul id="daily">
+      <li *ngFor="let forecast of forecast$.DailyForecasts">
+        <div>
+          <span>{{forecast.Date | date:"MM / dd"}}</span>
+          <span>
+            <mat-icon color="primary">arrow_drop_down</mat-icon>
+            <span>{{forecast.Temperature.Minimum.Value + forecast.Temperature.Minimum.Unit}}</span>
+          </span>
+          <span>
+            <mat-icon color="primary">arrow_drop_up</mat-icon>
+            <span>{{forecast.Temperature.Maximum.Value + forecast.Temperature.Maximum.Unit}}</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-template>
