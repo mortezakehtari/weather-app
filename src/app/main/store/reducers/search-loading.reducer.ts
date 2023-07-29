@@ -12,7 +12,7 @@ const initialLoadingState: SearchLoadingState = {
 
 const _searchLoadingReducer = createReducer(
   initialLoadingState,
-  on(SearchLoadingActions.SearchLoading, (state, { loading }) => ({ loading : loading})),
+  on(SearchLoadingActions.SearchLoading, (state, { loading }) => ({...state, loading : loading})),
 )
 
 export function SearchLoadingReducer(state:  SearchLoadingState | undefined, action: Action) {

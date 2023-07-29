@@ -16,8 +16,8 @@ const initialForecastLoadingState: ForecastState = {
 
 const _forecastReducer = createReducer(
   initialForecastLoadingState,
-  on(ForecastActions.ForecastLoading, (state, { loading }) => ({ loading: loading, forecast: state.forecast  })),
-  on(ForecastActions.UpdateForecast, (state, { forecast }) => ({ loading: state.loading, forecast: forecast })),
+  on(ForecastActions.ForecastLoading, (state, { loading }) => ({...state, loading: loading, forecast: state.forecast  })),
+  on(ForecastActions.UpdateForecast, (state, { forecast }) => ({...state, loading: state.loading, forecast: forecast })),
 
 )
 
