@@ -16,8 +16,8 @@ const initialCityState: CityState = {
 
 const _CityReducer = createReducer(
   initialCityState,
-  on(CityActions.SearchCities, (state, { cities }) => ({...state, cities: cities, selectedCity: state.selectedCity })),
-  on(CityActions.SelectCity, (state, { city }) => ({...state, cities: state.cities , selectedCity: city}))
+  on(CityActions.SearchCities, (state, { cities }) => ({...state, cities: cities })),
+  on(CityActions.SelectCity, (state, { city }) => ({...state , selectedCity: city}))
 )
 
 export function CityReducer(state:  CityState | undefined, action: Action) {
